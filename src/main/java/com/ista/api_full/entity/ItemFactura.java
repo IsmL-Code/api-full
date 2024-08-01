@@ -1,7 +1,7 @@
 package com.ista.api_full.entity;
 import jakarta.persistence.*;
 import  lombok.Data;
-import java.util.Set;
+
 
 @Data
 @Entity

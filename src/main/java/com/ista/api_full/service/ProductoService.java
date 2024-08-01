@@ -1,5 +1,5 @@
 package com.ista.api_full.service;
-import com.ista.api_full.entity.Persona;
+
 import com.ista.api_full.entity.Producto;
 import com.ista.api_full.repository.ProductoRepository;
 import lombok.RequiredArgsConstructor;

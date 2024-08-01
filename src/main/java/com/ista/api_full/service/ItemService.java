@@ -1,6 +1,6 @@
 package com.ista.api_full.service;
 import com.ista.api_full.entity.ItemFactura;
-import com.ista.api_full.entity.Persona;
+
 import com.ista.api_full.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

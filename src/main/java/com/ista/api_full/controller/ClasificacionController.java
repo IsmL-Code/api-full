@@ -1,6 +1,6 @@
 package com.ista.api_full.controller;
 import com.ista.api_full.entity.Clasificacion;
-import com.ista.api_full.entity.Persona;
+
 import com.ista.api_full.service.ClasificacacionService;
 import lombok.RequiredArgsConstructor;
 

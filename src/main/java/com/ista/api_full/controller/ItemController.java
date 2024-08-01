@@ -1,6 +1,6 @@
 package com.ista.api_full.controller;
 import com.ista.api_full.entity.ItemFactura;
-import com.ista.api_full.entity.Persona;
+
 import com.ista.api_full.service.ItemService;
 import lombok.RequiredArgsConstructor;
 
