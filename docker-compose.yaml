@@ -1,24 +1,18 @@
-version: '3.8'
-
+version: '3'
 services:
-  java_app:
-    container_name: java_app
-    image: pee-java_app:1.0.0
-    build: .
+  app:
+    image: my-spring-boot-app
     ports:
-      - 8080:8080
+      - "8080:8080"
     environment:
-      - DATABASE_URL=jdbc:postgresql://java_db:5432/postgres
-      - DATABASE_USERNAME=postgres
-      - DATABASE_PASSWORD=postgres
+      DB_URL: jdbc:postgresql://db:5432/yourdatabase
+      DB_USERNAME: yourusername
+      DB_PASSWORD: yourpassword
     depends_on:
-      - java_db
-  java_db:
-    container_name: java_db
-    image: postgres:12
-    ports:
-      - 5432:5432
+      - db
+  db:
+    image: postgres:14
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: postgres
+      POSTGRES_DB: yourdatabase
+      POSTGRES_USER: yourusername
+      POSTGRES_PASSWORD: yourpassword
