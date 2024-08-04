@@ -1,18 +1,35 @@
-version: '3'
+
 services:
-  app:
-    image: my-spring-boot-app
+
+  spring-api-image:
+    image: spring-api-image
+    container_name: spring-api-container
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
       - "8080:8080"
-    environment:
-      DB_URL: jdbc:postgresql://db:5432/yourdatabase
-      DB_USERNAME: yourusername
-      DB_PASSWORD: yourpassword
+    networks:
+      - spring-network
     depends_on:
-      - db
-  db:
-    image: postgres:14
+      - mysql
+
+  mysql:
+    image: mysql
+    container_name: mysql_database
     environment:
-      POSTGRES_DB: yourdatabase
-      POSTGRES_USER: yourusername
-      POSTGRES_PASSWORD: yourpassword
+      MYSQL_ROOT_PASSWORD: 1998
+      MYSQL_DATABASE: dockerDB
+      MYSQL_USER: jeff
+      MYSQL_PASSWORD: 1234
+    ports:
+      - "3307:3306"
+    networks:
+      - spring-network
+    volumes:
+      - mysql-volume:/var/lib/mysql
+
+networks:
+  spring-network:
+volumes:
+  mysql-volume:

@@ -1,18 +1,28 @@
-# Usa una imagen base de OpenJDK
+# USAR UNA IMAGEN DEL JDK
 FROM openjdk:17-jdk-alpine
 
-# Directorio de trabajo en el contenedor
-WORKDIR /app
-
-# Copia el JAR de tu aplicación al contenedor
-COPY target/api-full-0.0.1-SNAPSHOT.jar /app/api-full.jar
-
-# Expone el puerto que tu aplicación usa
+# INFORMAR EL PUERTO DONDE SE EJECUTA EL CONTENEDOR (INFORMATIVO)
 EXPOSE 8080
 
-# Comando para ejecutar la aplicación
-ENTRYPOINT ["java", "-jar", "/app/api-full.jar"]
+# DEFINIR DIRECTORIO RAIZ DE NUESTRO CONTENEDOR
+WORKDIR /root
 
+# COPIAR Y PEGAR ARCHIVOS DENTRO DEL CONTENEDOR
+COPY ./pom.xml /root
+COPY ./.mvn /root/.mvn
+COPY ./mvnw /root
+
+# DESCARGAR LAS DEPENDENCIAS
+RUN ./mvnw dependency:go-offline
+
+# COPIAR EL CODIGO FUENTE DENTRO DEL CONTENEDOR
+COPY ./src /root/src
+
+# CONSTRUIR NUESTRA APLICACION
+RUN ./mvnw clean install -DskipTests
+
+# LEVANTAR NUESTRA APLICACION CUANDO EL CONTENEDOR INICIE
+ENTRYPOINT ["java","-jar","/root/target/api-full-0.0.1-SNAPSHOT.jar"]
 
 
 
