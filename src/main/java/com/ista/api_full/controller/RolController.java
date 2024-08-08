@@ -37,7 +37,7 @@ public class RolController {
         Rol  existingCustomer = rolService.getRolById(id);
         if(existingCustomer == null)
             return ResponseEntity.notFound().build();
-        existingCustomer.setCompetencias(rol.getCompetencias());
+        existingCustomer.setNombreRol(rol.getNombreRol());
         Rol updateCustomer = rolService.updateRol(existingCustomer);
         return ResponseEntity.ok(updateCustomer);
     }

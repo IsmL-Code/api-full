@@ -9,10 +9,13 @@ import java.util.*;
 public class TipoPago {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id_tipo_pago;
+    @Column(nullable = false)
     private String tipo;
+    @Column(nullable = false)
     private String descripcion;
 
-    @OneToMany(mappedBy = "tipoPago")
+    @OneToMany(mappedBy = "tipo_pago_factura", cascade = CascadeType.ALL)
     private List<Factura> facturas;
+
 }

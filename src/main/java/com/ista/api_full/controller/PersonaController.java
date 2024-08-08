@@ -41,8 +41,8 @@ public class PersonaController {
             return ResponseEntity.notFound().build();
         existingCustomer.setNombre(persona.getNombre());
         existingCustomer.setApellido(persona.getApellido());
-        existingCustomer.setEmail(persona.getEmail());
-        existingCustomer.setTelefono(persona.getTelefono());
+        existingCustomer.setCorreo(persona.getCorreo());
+        existingCustomer.setCelular(persona.getCelular());
         existingCustomer.setDni(persona.getDni());
         Persona updateCustomer = personaService.updatePersona(existingCustomer);
         return ResponseEntity.ok(updateCustomer);

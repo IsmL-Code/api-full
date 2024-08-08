@@ -9,15 +9,20 @@ import java.util.*;
 public class Proveedores {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    private String nombre;
+    @Column(nullable = false)
+    private Long id_proveedor;
+    @Column(nullable = false)
     private String ruc;
+    @Column(nullable = false)
     private String telefono;
+    @Column(nullable = false)
     private String pais;
+    @Column(nullable = false)
     private String correo;
+    @Column(nullable = false)
     private String moneda;
 
-    @OneToMany(mappedBy = "proveedor")
+
+    @OneToMany(mappedBy = "proveedor_producto", cascade = CascadeType.ALL)
     private List<Producto> productos;
 }

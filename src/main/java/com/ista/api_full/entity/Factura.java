@@ -11,20 +11,24 @@ import java.time.LocalDate;
 public class Factura {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id_factura;
+    @Column(nullable = false)
     private String ruc;
-    private LocalDate fecha;
-    private double descuento;
-    private double total;
+    @Column(nullable = false)
+    private Date fecha;
+    @Column(nullable = false)
+    private Double descuento;
+    @Column(nullable = false)
+    private Double total;
+
+    @OneToMany(mappedBy = "factura_item", cascade = CascadeType.ALL)
+    private List<ItemFactura> items_factura;
 
     @ManyToOne
-    @JoinColumn(name = "tipo_pago_id")
-    private TipoPago tipoPago;
+    @JoinColumn(name = "id_tipo_pago")
+    private TipoPago tipo_pago_factura;
 
     @ManyToOne
-    @JoinColumn(name = "persona_id")
-    private Persona persona;
-
-    @OneToMany(mappedBy = "factura")
-    private List<ItemFactura> itemsFactura;
+    @JoinColumn(name = "id_persona")
+    private Persona persona_factura;
 }

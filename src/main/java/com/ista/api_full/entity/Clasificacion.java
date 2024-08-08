@@ -9,10 +9,11 @@ import java.util.*;
 public class Clasificacion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+    private Long id_clasificacion;
+    @Column(nullable = false)
     private String grupo;
 
-    @OneToMany(mappedBy = "clasificacion")
+    @OneToMany(mappedBy = "clasificacion_producto", cascade = CascadeType.ALL)
     private List<Producto> productos;
+
 }

@@ -1,7 +1,7 @@
 package com.ista.api_full.entity;
 import jakarta.persistence.*;
 import  lombok.Data;
-import java.util.Set;
+import java.util.*;
 
 @Data
 @Entity
@@ -10,21 +10,22 @@ public class Persona {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-
+    private Long id_persona;
+    @Column(nullable = false)
     private String nombre;
-
+    @Column(nullable = false)
     private String apellido;
-
-    private String telefono;
-
-    private String email;
-
+    @Column(nullable = false)
     private String dni;
+    @Column(nullable = false)
+    private String celular;
+    @Column(nullable = false)
+    private String correo;
 
-    @OneToMany(mappedBy = "persona", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Factura> facturas;
+    @OneToMany(mappedBy = "persona_factura", cascade = CascadeType.ALL)
+    private List<Factura> facturas;
 
-    @OneToOne(mappedBy = "persona", cascade = CascadeType.ALL)
-    private Usuario usuario;
+    @OneToMany(mappedBy = "persona_usuario", cascade = CascadeType.ALL)
+    private List<Usuario> usuarios;
+
 }

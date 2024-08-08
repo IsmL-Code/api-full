@@ -1,7 +1,7 @@
 package com.ista.api_full.entity;
 import jakarta.persistence.*;
 import  lombok.Data;
-import java.util.Set;
+import java.util.*;
 
 
 @Data
@@ -10,13 +10,14 @@ import java.util.Set;
 public class Competencia {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+    private Long id_competencia;
+    @Column(nullable = false)
     private String nombre;
-    private String  descripcion;
+    @Column(nullable = false)
+    private String descripcion;
 
-    @ManyToMany(mappedBy = "competencias")
-    private Set<Rol> roles;
+    @OneToMany(mappedBy = "competencia", cascade = CascadeType.ALL)
+    private List<RolCompetencia> roles_competencia;
 
-    // Getters y Setters
+
 }

@@ -40,7 +40,7 @@ public class ProductoController {
         if(existingp == null)
             return ResponseEntity.notFound().build();
         existingp.setStock(producto.getStock());
-        existingp.setPreciouni(producto.getPreciouni());
+        existingp.setPrecio_unitario(producto.getPrecio_unitario());
         Producto updateCustomer = productoService.updateProducto(existingp);
         return ResponseEntity.ok(updateCustomer);
     }

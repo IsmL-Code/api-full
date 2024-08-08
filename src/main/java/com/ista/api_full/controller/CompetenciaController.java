@@ -1,5 +1,6 @@
 package com.ista.api_full.controller;
 import com.ista.api_full.entity.Competencia;
+import com.ista.api_full.entity.Rol;
 import com.ista.api_full.service.CompetenciaService;
 import lombok.RequiredArgsConstructor;
 
@@ -42,4 +43,17 @@ public class CompetenciaController {
         competenciaService.deleteCompetencia(id);
         return ResponseEntity.ok().build();
     }
+
+
+    @PutMapping("/competencia-up/{id}")
+    public ResponseEntity<Competencia> updateCompetencia(@PathVariable Long id, @RequestBody Competencia competencia) {
+        Competencia existingCustomer = competenciaService.getCompetenciaById(id);
+        if(existingCustomer == null)
+            return ResponseEntity.notFound().build();
+        existingCustomer.setNombre(competencia.getNombre());
+        Competencia updateCustomer = competenciaService.updateCompetencia(existingCustomer);
+        return ResponseEntity.ok(updateCustomer);
+    }
+
+
 }

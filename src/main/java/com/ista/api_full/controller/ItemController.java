@@ -41,8 +41,8 @@ public class ItemController {
         if(existingItm == null)
             return ResponseEntity.notFound().build();
         existingItm.setCantidad(itemFactura.getCantidad());
-        existingItm.setPrecioUnitario(itemFactura.getPrecioUnitario());
-        existingItm.setSubtotal(itemFactura.getSubtotal());
+        existingItm.setPrecio(itemFactura.getPrecio());
+        existingItm.setSub_total(itemFactura.getSub_total());
         ItemFactura updateItm = itemService.updateItemFactura(existingItm);
         return ResponseEntity.ok(updateItm);
     }

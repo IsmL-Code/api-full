@@ -9,20 +9,25 @@ import java.util.*;
 public class Producto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id_producto;
+    @Column(nullable = false)
     private int stock;
-    private Double preciouni;
+    @Column(nullable = false)
+    private Double precio_unitario;
+    @Column(nullable = false)
     private String unidad;
-    private  boolean iva;
-    @ManyToOne
-    @JoinColumn(name = "proveedor_id")
-    private Proveedores proveedor;
+    @Column(nullable = false)
+    private Boolean iva;
 
     @ManyToOne
-    @JoinColumn(name = "clasificacion_id")
-    private Clasificacion clasificacion;
+    @JoinColumn(name = "id_clasificacion")
+    private Clasificacion clasificacion_producto;
 
-    @OneToMany(mappedBy = "producto")
-    private List<ItemFactura> itemsFactura;
+    @ManyToOne
+    @JoinColumn(name = "id_proveedor")
+    private Proveedores proveedor_producto;
+
+    @OneToMany(mappedBy = "producto_item", cascade = CascadeType.ALL)
+    private List<ItemFactura> items_factura;
 
 }

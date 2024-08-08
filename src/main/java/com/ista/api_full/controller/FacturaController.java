@@ -25,6 +25,8 @@ public class FacturaController {
     private List<Factura>getAllFactura() {
         return facturaService.getAllFactura();
     }
+
+
     @GetMapping("/factura/{id}")
     public ResponseEntity<Factura>getFacturaById(@PathVariable Long id) {
         Factura  factura =  facturaService.getFacturaById(id);
@@ -33,7 +35,7 @@ public class FacturaController {
         return ResponseEntity.ok(factura);
     }
 
-    /*
+
     @DeleteMapping("/fatura-dl/{id}")
     public ResponseEntity<?> deleteFactura(@PathVariable Long id) {
         Factura existing = facturaService.getFacturaById(id);
@@ -50,10 +52,8 @@ public class FacturaController {
         if(existingf == null)
             return ResponseEntity.notFound().build();
         existingf.setRuc(factura.getRuc());
-        Factura updatef = facturaService.updatefactura(existingf);
+        Factura updatef = facturaService.updateFactura(existingf);
         return ResponseEntity.ok(updatef);
     }
-
-     */
 
 }

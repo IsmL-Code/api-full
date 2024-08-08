@@ -1,6 +1,7 @@
 package com.ista.api_full.controller;
 import com.ista.api_full.entity.Clasificacion;
 
+
 import com.ista.api_full.service.ClasificacacionService;
 import lombok.RequiredArgsConstructor;
 
@@ -45,6 +46,15 @@ public class ClasificacionController {
 
         Clasificacion updateCla = clasificacionService.updateClasificacion(existingCla);
         return ResponseEntity.ok(updateCla);
+    }
+
+    @DeleteMapping("/clasificacion-dl/{id}")
+    public ResponseEntity<?> deleteUsuario(@PathVariable Long id) {
+        Clasificacion existingCl = clasificacionService.getClasificacionById(id);
+        if(existingCl == null)
+            return ResponseEntity.notFound().build();
+        clasificacionService.deleteClasificacion(id);
+        return ResponseEntity.ok().build();
     }
 
 }

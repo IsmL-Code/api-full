@@ -9,17 +9,19 @@ import  lombok.Data;
 public class ItemFactura {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    private Integer cantidad;
-    private Double precioUnitario;
-    private Double subtotal;
-
-    @ManyToOne
-    @JoinColumn(name = "factura_id")
-    private Factura factura;
+    private Long id_item_factura;
+    @Column(nullable = false)
+    private int cantidad;
+    @Column(nullable = false)
+    private Double precio;
+    @Column(nullable = false)
+    private Double sub_total;
 
     @ManyToOne
-    @JoinColumn(name = "producto_id")
-    private Producto producto;
+    @JoinColumn(name = "id_factura")
+    private Factura factura_item;
+
+    @ManyToOne
+    @JoinColumn(name = "id_producto")
+    private Producto producto_item;
 }

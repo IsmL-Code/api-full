@@ -42,8 +42,8 @@ public class UsuarioController {
         Usuario  existingCustomer = usuarioService.getUsuarioById(id);
         if(existingCustomer == null)
             return ResponseEntity.notFound().build();
-        existingCustomer.setUsername(persona.getUsername());
-        existingCustomer.setPassword(persona.getPassword());
+        existingCustomer.setNombreUsuario(persona.getNombreUsuario());
+        existingCustomer.setContrasenaUsuario(persona.getContrasenaUsuario());
         Usuario updateCustomer = usuarioService.updateUsuario(existingCustomer);
         return ResponseEntity.ok(updateCustomer);
     }
