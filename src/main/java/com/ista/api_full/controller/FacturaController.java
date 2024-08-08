@@ -52,6 +52,7 @@ public class FacturaController {
         if(existingf == null)
             return ResponseEntity.notFound().build();
         existingf.setRuc(factura.getRuc());
+        existingf.setDescuento(factura.getDescuento());
         Factura updatef = facturaService.updateFactura(existingf);
         return ResponseEntity.ok(updatef);
     }
